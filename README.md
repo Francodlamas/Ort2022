@@ -16,3 +16,11 @@ Para crear el package.json ejecutamos npm init
 Para instalar un modulo *npm install NOMBRE*
 
 Para instalar dependencias npm install 
+
+crear un archivo .gitignore y poner el nombre de la carpeta que quierasd olvidar
+
+
+
+  
+
+  
