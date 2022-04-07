@@ -8,9 +8,17 @@ const data =[
 const data2=[];
 let aux=0;
 
+
         for (var i=0; i<data.length; i++) 
-        {
+{
         aux=data[i];
         data2[i]=data[i]*data[i-1]-data[i+1];
+        if(i==0){
+                console.log(-data[i+1]);
+        }
+
+        
+        else{
         console.log(data2[i]);
         }
+}
