@@ -6,13 +6,12 @@ ArrB = ArrB.concat(ArrA);
 ArrB = ArrB.concat(ArrA);
 ArrC= ArrC.concat(ArrA);
 ArrC= ArrC.concat(ArrA);
-let a;
-
 for(var i=0;i<ArrB.length;i++){
     let obj ={
      orig:ArrC[i],
      mod:Math.sqrt(ArrB[i])
     };
-    console.log(obj);
-
+    if (!isNaN(obj.mod)) {
+    console.log("orig: "+obj.orig,"  mod: "+ obj.mod.toFixed(2) );
+    }
 }
