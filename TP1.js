@@ -26,31 +26,38 @@ app.get("/mi_endpoint", function (req, res) {
 });
 
 app.post ("/numero_aleatorio", function (req, res){
-    let aux = Math.floor(Math.random() * req.body.Valor)+1;
+    let aleatorio;
+    aleatorio=crear_aleatorio(req.body.Valor);
     res.send([aux]);
 }); 
+const crear_aleatorio = (limite) => {
+let aux = Math.floor(Math.random() * limite)+1;
+
+return aux;
+}
 
 const crear_carton = () => {
-
-    let carton = [];
+    let carton=[];
         for(let i=0;i<10;i++){
-        carton[i]=numero_aleatorio(99);
-        
+        carton.push(crear_aleatorio(99));  
         }
-    return {
-        resultado: carton
-    };
+    return carton;
 };
-
-
 
 app.post ("/iniciar_juego", function (req, res){
 
-    for(let i=0;i<10;i++){
+    let vecCartones=[];
+    for(let i=0;i<req.body.num;i++){
+        let carton= crear_carton();
 
-    
+        let cartonObjeto = {
+            nombre:null,
+            numeros:carton,
+            estado:false
+        };
+      vecCartones.push(cartonObjeto);
+      res.send(vecCartones);
     }
-
 });
 
 app.listen(PORT, function(err){
