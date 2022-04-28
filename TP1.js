@@ -43,10 +43,10 @@ const crear_carton = () => {
         }
     return carton;
 };
-
+let vecCartones=[];
 app.post ("/iniciar_juego", function (req, res){
 
-    let vecCartones=[];
+   
     for(let i=0;i<req.body.num;i++){
         let carton= crear_carton();
 
@@ -56,8 +56,42 @@ app.post ("/iniciar_juego", function (req, res){
             estado:false
         };
       vecCartones.push(cartonObjeto);
-      res.send(vecCartones);
+      
     }
+    res.send(vecCartones);
+});
+
+app.get( "/obtener_carton",function(req,res){
+
+    for(i=0;i<vecCartones.length;i++){
+        
+        if(vecCartones[i].nombre==null){
+             vecCartones[i].nombre=req.body.nombre;
+             break
+            }
+    }
+
+    res.send(vecCartones);
+});
+
+app.get ("/cartones",function(req,res){
+
+    if(req.body.nombre==null){
+        res.send(vecCartones);
+
+    }
+    else{
+        for(i=0;i<vecCartones.length;i++){
+            if(vecCartones[i].nombre==req.body.nombre){
+                res.send(vecCartones[i]);
+            }
+        }
+    }
+});
+
+app.get( "/sacar_numero",function(req,res){
+
+
 });
 
 app.listen(PORT, function(err){
