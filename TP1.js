@@ -90,8 +90,35 @@ app.get ("/cartones",function(req,res){
 });
 
 app.get( "/sacar_numero",function(req,res){
+    let aux=0; 
+    const isBelowThreshold=(currentValue) => currentValue == -1;
+    const incompleto=(currentValue) => currentValue.estado == "incompleto";
+    for(o=0;vecCartones.length>o;o++){
+        vecCartones[o].estado="incompleto";
+    }
 
+    while(vecCartones.every(incompleto)){
 
+        aux=crear_aleatorio(99);
+        for(i=0;i<vecCartones.length;i++){
+            if (vecCartones[i].numeros.every(isBelowThreshold)){
+                vecCartones[i].estado="completo";
+            }
+            for(let a=0;a<10;a++){
+
+                if(vecCartones[i].numeros[a]==aux){
+                    vecCartones[i].numeros[a]=-1;
+                }
+
+            }
+            if(vecCartones[i].estado=="completo"){
+                break;
+             }
+         }
+        
+        }
+      
+    res.send(vecCartones[i].nombre);
 });
 
 app.listen(PORT, function(err){
