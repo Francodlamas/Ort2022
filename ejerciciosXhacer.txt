@@ -21,5 +21,12 @@ El juego comienza llamando al endpoint iniciar_juego que crea los cartones. Los 
 Se sacan números con sacar_numero hasta que el sistema detecta qué cartón obtuvo el bingo mostrando el nombre del jugador que ganó o diciendo que quedó vacante
 si el cartón ganador no fué reclamado por un jugador.
 
+extra
+
+1. El carton tiene que tener 15 numeros repartidos entre las 10 decenas de los 100 numeros 
+posibles de manera que en cada decena (por ejemplo del 0 al 9, del 10 al 19, etc) exsistan 1 o 2 numeros
+
+
+
 © 2022 GitHub, Inc.
 Terms Privacy Security Status Docs Contact GitHub Pricing API Training Blog About
