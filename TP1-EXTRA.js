@@ -27,25 +27,50 @@ app.get("/mi_endpoint", function (req, res) {
 
 app.post ("/numero_aleatorio", function (req, res){
     let aleatorio;
-    aleatorio=crear_aleatorio(req.body.Valor);
-    res.send([aux]);
+    aleatorio=crear_aleatorio(req.body.Valor,1);
+    res.send([aleatorio]);
 }); 
-const crear_aleatorio = (limite) => {
-let aux = Math.floor(Math.random() * limite)+1;
+
+const crear_aleatorio = (limiteMaximo) => {
+let aux = Math.floor(Math.random() * limiteMaximo)+1;
 
 return aux;
 }
 
+const en_decena = (num) => num === 100 ? 10 : Math.floor(num/10) + 1;
+
+const decenas=[0,0,0,0,0,0,0,0,0,0];
+
+const rnd = () => Math.round(Math.random() * 100);
+
+const decena_completa=(num)=>{ 
+    const decena = en_decena(num);
+
+    if(decenas[decena-1]>=2){
+        return true;
+    } else{
+        decenas[decena-1]=decenas[decena-1]+1;
+        return false;
+    }
+}
+
 const crear_carton = () => {
-    let carton=[];
+    let Auxcarton=[];
     let aux;
-        while(carton.length<15){
-        aux=crear_aleatorio(100);
-        
-        carton.push(aux);
-        }
-    return carton;
+    let i;
+
+    while(i<15){  
+        aux=rnd();
+     if(!decena_completa(aux)){
+        Auxcarton.push(aux);
+        i++;
+    } else {
+        console.log(`Decena completa`);
+    }  
+}
+return Auxcarton;
 };
+
 let vecCartones=[];
 app.post ("/iniciar_juego", function (req, res){
 
